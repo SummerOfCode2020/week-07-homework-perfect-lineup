@@ -88,7 +88,7 @@ function validateTeamCountLimit(roster) {
   }, {})
 
   /* 
-  since the accumulator is an array, can utilize the for...in loop to make sure that no teamIds
+  since the accumulator is an object, can utilize the for...in loop to make sure that no teamIds
   have a count > 2 
   */
   for (let property in playersPerTeam) {
