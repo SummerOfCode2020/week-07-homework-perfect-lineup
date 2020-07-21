@@ -55,8 +55,6 @@ function validateLineup(items) {
 
   limits(teams, 2)
 
-
-
   /*  returns boolean for nested conditionals and functions. 
   Couldn't get it to return false from inside loop had to declare global variable toggle
   */
