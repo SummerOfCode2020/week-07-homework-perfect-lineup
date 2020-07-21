@@ -29,7 +29,7 @@ function validateLineup(items) {
   }
 
   //  totals and checks if salaries exceed limit
-  if (salaries.reduce(sum, 0) > 45000) { return false }
+  if (salaries.reduce(sum) > 45000) { toggle = false }
 
   // function counts how many player from same team and game by check array for duplictes
 
@@ -55,9 +55,7 @@ function validateLineup(items) {
 
   limits(teams, 2)
 
-  /*  returns boolean for nested conditionals and functions. 
-  Couldn't get it to return false from inside loop had to declare global variable toggle
-  */
+  // returns boolean that's expected by test
   return toggle
 }
 
