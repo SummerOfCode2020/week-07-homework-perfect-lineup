@@ -11,22 +11,19 @@ function validateLineup(items) {
   const positions = items.map((player) => player.position)
 
   //  determines if position allocation limits have been met
-  if (positions.filter((position) => position === 'OF').length < 3 ||
-    positions.filter((position) => position === 'OF').length > 3) { return false }
-  if (positions.filter((position) => position === 'P').length < 1 ||
-    positions.filter((position) => position === 'P').length > 1) { return false }
-  if (positions.filter((position) => position === 'C').length < 1 ||
-    positions.filter((position) => position === 'C').length > 1) { return false }
-  if (positions.filter((position) => position === '1B').length < 1 ||
-    positions.filter((position) => position === '1B').length > 1) { return false }
-  if (positions.filter((position) => position === '2B').length < 1 ||
-    positions.filter((position) => position === '2B').length > 1) { return false }
-  if (positions.filter((position) => position === '3B').length < 1 ||
-    positions.filter((position) => position === '3B').length > 1) { return false }
-  if (positions.filter((position) => position === 'SS').length < 1 ||
-    positions.filter((position) => position === 'SS').length > 1) { return false }
+  function positionLimits(pos, limit) {
+    if (positions.filter((position) => position === pos).length < limit ||
+      positions.filter((position) => position === pos).length > limit) { toggle = false }
+  }
+  positionLimits('OF', 3)
+  positionLimits('P', 1)
+  positionLimits('C', 1)
+  positionLimits('1B', 1)
+  positionLimits('2B', 1)
+  positionLimits('3B', 1)
+  positionLimits('SS', 1)
 
-  // callback function for reduce method (not sure if needed???)
+  // callback function for reduce method 
   function sum(acc, n) {
     return acc + n
   }
@@ -63,7 +60,9 @@ function validateLineup(items) {
     }
   })
 
-  //  returns boolean for nested conditionals. Couldn't get it to return false from inside loop had to declare global variable toggle
+  /*  returns boolean for nested conditionals and functions. 
+  Couldn't get it to return false from inside loop had to declare global variable toggle
+  */
   return toggle
 }
 
