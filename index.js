@@ -31,34 +31,31 @@ function validateLineup(items) {
   //  totals and checks if salaries exceed limit
   if (salaries.reduce(sum, 0) > 45000) { return false }
 
+  // function counts how many player from same team and game by check array for duplictes
+
+  function limits(check, limit) {
+    check.forEach(element => {
+      let count = 0
+
+      for (let index = 0; index < check.length; index++) {
+        if (element === check[index]) {
+          count++
+        }
+        if (count > limit) {
+          toggle = false
+        }
+      }
+    })
+  }
   //  compares each element in games array with elements in same array to check prescribed limits
 
-  games.forEach(element => {
-    let count = 0
+  limits(games, 3)
 
-    for (let index = 0; index < games.length; index++) {
-      if (element === games[index]) {
-        count++
-      }
-      if (count > 3) {
-        toggle = false
-      }
-    }
-  })
   //  compares each element in teams array with elements in same array to check prescribed limits
 
-  teams.forEach(element => {
-    let count = 0
+  limits(teams, 2)
 
-    for (let index = 0; index < teams.length; index++) {
-      if (element === teams[index]) {
-        count++
-      }
-      if (count > 2) {
-        toggle = false
-      }
-    }
-  })
+
 
   /*  returns boolean for nested conditionals and functions. 
   Couldn't get it to return false from inside loop had to declare global variable toggle
