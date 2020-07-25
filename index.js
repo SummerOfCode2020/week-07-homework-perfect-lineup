@@ -7,10 +7,8 @@ function validateLineup (lineUp) {
         positionSS = 0,
         positionOF = 0,
         gamesPlayed = [],
-        playerPositions = positionOF >= 3 && position1B === 1 && position2B === 1 && position3B === 1
-        && positionC === 1 && positionSS === 1 && positionP === 1,
         playerTeam = []
-        
+ 
     /** checking for player salary and position the player playes */
     lineUp.forEach(player => {
         if (player.salary <= 45000) {
@@ -54,22 +52,37 @@ function validateLineup (lineUp) {
         }
         
     })
-    /** here were a counting how many distinct games the player has played */        
-        let uniqGameCount = gamesPlayed.reduce((acc, val) => {
-            acc[val] = acc[val] === undefined ? 1 : acc[val] += 1
-            return acc; }, {})
 
-    /** here I am counting the different teams and many players are in them */
-        let teamPlayedFor = playerTeam.reduce((acc, val) => {
-            acc[val] = acc[val] === undefined ? 1 : acc[val] += 1
-            return acc; }, {})
+    // let's get the most repeated gameId count to see if the team's games played is less than 
+    let count = 0;
 
-        console.log({teamPlayedFor})
-        console.log({uniqGameCount})
-        console.log({gamesPlayed})
-        console.log({playerTeam})
-    
-    return playerPositions 
+    for (let i = 0; i < gamesPlayed.length; i++) {
+        for (let j = i + 1; j < gamesPlayed.length; j++) {
+            if (gamesPlayed[i] == gamesPlayed[j] ) {
+                count++;
+                break;
+            }
+        }
+    }
+    // different team count
+    let teamIdCount = 0;
+
+    for (let i = 0; i < playerTeam.length;i ++) {
+        for (let j = i + 1; j < playerTeam.length; j++) {
+            if (playerTeam[i] == playerTeam[j]) {
+                teamIdCount++;
+                break;
+            }
+        }
+        
+    }
+
+    let playerPositions = positionOF >= 3 && position1B == 1 && position2B == 1 && position3B == 1
+    && positionC == 1 && positionSS == 1 && positionP == 1
+
+    let result = playerPositions == true && count <= 2
+
+    return result
 }
 
-module.exports = validateLineup
+module.exports = validateLineup 
