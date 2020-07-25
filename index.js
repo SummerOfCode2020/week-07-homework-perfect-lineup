@@ -19,7 +19,7 @@ function calculateSalary(lineup) {
         let outFielderCount = 0
         //of loop gets the value of each position - for item of object or array
         for (let player of lineup) {
-            switch(player.position) {
+            switch (player.position) {
                 case 'P':
                     pCount++
                     break;
@@ -38,7 +38,7 @@ function calculateSalary(lineup) {
                 case 'SS':
                     shortStopCount++
                     break;
-                case 'default':
+                default:
                     outFielderCount++
                     break;
             }
