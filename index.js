@@ -106,9 +106,6 @@ function violatePositionCount(lineup) {
   outfieldCount === 3
 }
 
-
-
-
 module.exports = validateLineup
 
 // cannot contain more than 3 players from a single game
